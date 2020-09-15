@@ -1,29 +1,31 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "disenchanter",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Disenchanter",
+  "description": "This is a simple mod that adds a disenchanting table",
   "authors": [
-    "Me!"
+    "glisco"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
     "sources": "https://github.com/FabricMC/fabric-example-mod"
   },
 
   "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/disenchanter/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "com.glisco.disenchanter.main.Main"
+    ],
+    "client": [
+      "com.glisco.disenchanter.main.MainClient"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+
   ],
 
   "depends": {
