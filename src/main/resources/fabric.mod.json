@@ -2,38 +2,31 @@
   "schemaVersion": 1,
   "id": "disenchanter",
   "version": "${version}",
-
   "name": "Disenchanter",
   "description": "This is a simple mod that adds a disenchanting table",
   "authors": [
     "glisco"
   ],
   "contact": {
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "sources": "https://github.com/glisco/disenchanter",
+    "issues": "https://github.com/glisco/disenchanter/issues"
   },
-
-  "license": "CC0-1.0",
+  "license": "MIT",
   "icon": "assets/disenchanter/icon.png",
-
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.glisco.disenchanter.main.Main"
+      "com.glisco.disenchanter.Disenchanter"
     ],
     "client": [
-      "com.glisco.disenchanter.main.MainClient"
+      "com.glisco.disenchanter.client.DisenchanterClient"
     ]
   },
   "mixins": [
-
   ],
-
   "depends": {
     "fabricloader": ">=0.7.4",
     "fabric": "*",
-    "minecraft": "1.16.x"
-  },
-  "suggests": {
-    "flamingo": "*"
+    "minecraft": "1.17.x"
   }
 }
