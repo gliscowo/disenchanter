@@ -2,10 +2,12 @@ package com.glisco.disenchanter.catalyst;
 
 import net.minecraft.item.Item;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-public class CatalystRegistry {
+public final class CatalystRegistry {
 
     private static final Map<Item, Catalyst> REGISTRY = new HashMap<>();
 
@@ -20,6 +22,10 @@ public class CatalystRegistry {
 
     public static boolean isCatalyst(Item item) {
         return REGISTRY.containsKey(item);
+    }
+
+    public static List<Item> getCatalysts() {
+        return new ArrayList<>(REGISTRY.keySet());
     }
 
 }

@@ -3,7 +3,7 @@
   "id": "disenchanter",
   "version": "${version}",
   "name": "Disenchanter",
-  "description": "This is a simple mod that adds a disenchanting table",
+  "description": "A disenchanter because that totally hasn't been done before",
   "authors": [
     "glisco"
   ],
@@ -20,6 +20,9 @@
     ],
     "client": [
       "com.glisco.disenchanter.client.DisenchanterClient"
+    ],
+    "rei_plugins": [
+      "com.glisco.disenchanter.compat.rei.DisenchanterReiPlugin"
     ]
   },
   "mixins": [
