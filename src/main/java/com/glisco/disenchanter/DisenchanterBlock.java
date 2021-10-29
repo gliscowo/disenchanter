@@ -18,31 +18,27 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 
 public class DisenchanterBlock extends Block {
-    protected static final VoxelShape SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D);
+
+    private static final VoxelShape BASE_SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 11.0D, 16.0D);
+    private static final VoxelShape CENTER_SHAPE = Block.createCuboidShape(3.0D, 11.0D, 3.0D, 13.0D, 12.0D, 13.0D);
+    private static final VoxelShape ARM_1_SHAPE = Block.createCuboidShape(4.0D, 11.0D, 0.0D, 12.0D, 12.0D, 16.0D);
+    private static final VoxelShape ARM_2_SHAPE = Block.createCuboidShape(0.0D, 11.0D, 4.0D, 16.0D, 12.0D, 12.0D);
+
+    private static final VoxelShape SHAPE = VoxelShapes.union(BASE_SHAPE, CENTER_SHAPE, ARM_1_SHAPE, ARM_2_SHAPE);
 
     public DisenchanterBlock() {
         super(FabricBlockSettings.of(Material.METAL).hardness(5f));
     }
 
     @Override
-    public VoxelShape getCullingShape(BlockState state, BlockView world, BlockPos pos) {
-        return SHAPE;
-    }
-
-    @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPE;
-    }
-
-    @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return SHAPE;
     }
 
@@ -76,20 +72,13 @@ public class DisenchanterBlock extends Block {
         world.addParticle(ParticleTypes.ENCHANT, destination.getX() + 0.5f, destination.getY(), destination.getZ() + 0.5f, originX, originY, originZ);
     }
 
-    private static class Factory implements NamedScreenHandlerFactory {
-
-        private final BlockPos pos;
-
-        private Factory(BlockPos pos) {
-            this.pos = pos;
-        }
+    private record Factory(BlockPos pos) implements NamedScreenHandlerFactory {
 
         @Override
         public Text getDisplayName() {
             return new TranslatableText("disenchanter.gui.title");
         }
 
-        @Nullable
         @Override
         public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
             return new DisenchanterScreenHandler(syncId, inv, ScreenHandlerContext.create(player.world, pos));
