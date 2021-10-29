@@ -1,6 +1,7 @@
 package com.glisco.disenchanter;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
@@ -34,7 +35,7 @@ public class DisenchanterBlock extends Block {
     private static final VoxelShape SHAPE = VoxelShapes.union(BASE_SHAPE, CENTER_SHAPE, ARM_1_SHAPE, ARM_2_SHAPE);
 
     public DisenchanterBlock() {
-        super(FabricBlockSettings.of(Material.METAL).hardness(5f));
+        super(FabricBlockSettings.of(Material.METAL).hardness(5f).breakByTool(FabricToolTags.PICKAXES));
     }
 
     @Override
