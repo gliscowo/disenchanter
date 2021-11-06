@@ -1,7 +1,9 @@
 package com.glisco.disenchanter;
 
-import com.glisco.disenchanter.catalyst.CatalystRegistry;
 import com.glisco.disenchanter.catalyst.Catalysts;
+import com.glisco.disenchanter.compat.config.DisenchanterConfig;
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.screenhandler.v1.ScreenHandlerRegistry;
@@ -21,6 +23,8 @@ public class Disenchanter implements ModInitializer {
     public static final Block DISENCHANTER_BLOCK = new DisenchanterBlock();
     public static final ScreenHandlerType<DisenchanterScreenHandler> DISENCHANTER_SCREEN_HANDLER;
 
+    private static DisenchanterConfig CONFIG;
+
     static {
         DISENCHANTER_SCREEN_HANDLER = ScreenHandlerRegistry.registerSimple(DISENCHANTER_HANDLER_ID, DisenchanterScreenHandler::new);
     }
@@ -30,6 +34,9 @@ public class Disenchanter implements ModInitializer {
         Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "disenchanter"), DISENCHANTER_BLOCK);
         Registry.register(Registry.ITEM, new Identifier(MOD_ID, "disenchanter"), new BlockItem(DISENCHANTER_BLOCK, new Item.Settings().group(ItemGroup.MISC)));
 
+        AutoConfig.register(DisenchanterConfig.class, JanksonConfigSerializer::new);
+        CONFIG = AutoConfig.getConfigHolder(DisenchanterConfig.class).get();
+
         Catalysts.registerDefaults();
 
         ServerPlayNetworking.registerGlobalReceiver(new Identifier(MOD_ID, "disenchant_request"), (server, player, handler, buf, responseSender) -> {
@@ -38,5 +45,9 @@ public class Disenchanter implements ModInitializer {
                 disenchanter.onDisenchantRequest();
             });
         });
+    }
+
+    public static DisenchanterConfig getConfig() {
+        return CONFIG;
     }
 }

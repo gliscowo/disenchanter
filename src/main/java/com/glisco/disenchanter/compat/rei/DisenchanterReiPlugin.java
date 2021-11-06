@@ -6,7 +6,7 @@ import me.shedaniel.rei.api.client.plugins.REIClientPlugin;
 import me.shedaniel.rei.api.client.registry.category.CategoryRegistry;
 import me.shedaniel.rei.api.client.registry.display.DisplayRegistry;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
-import net.minecraft.recipe.Ingredient;
+import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.minecraft.util.Identifier;
 
 public class DisenchanterReiPlugin implements REIClientPlugin {
@@ -15,11 +15,12 @@ public class DisenchanterReiPlugin implements REIClientPlugin {
 
     @Override
     public void registerDisplays(DisplayRegistry registry) {
-        CatalystRegistry.getCatalysts().forEach(item -> registry.add(new CatalystDisplay(Ingredient.ofItems(item))));
+        CatalystRegistry.forEach((item, catalystEntry) -> registry.add(new CatalystDisplay(item, catalystEntry.amount())));
     }
 
     @Override
     public void registerCategories(CategoryRegistry registry) {
         registry.add(new CatalystCategory());
+        registry.addWorkstations(CATALYST, EntryStacks.of(Disenchanter.DISENCHANTER_BLOCK));
     }
 }

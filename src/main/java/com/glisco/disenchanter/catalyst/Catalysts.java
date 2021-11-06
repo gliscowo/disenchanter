@@ -12,13 +12,13 @@ import java.util.*;
 public class Catalysts {
 
     public static void registerDefaults() {
-        CatalystRegistry.register(Items.EMERALD, new Emerald());
-        CatalystRegistry.register(Items.DIAMOND, new Diamond());
-        CatalystRegistry.register(Items.ENDER_PEARL, new EnderPearl());
-        CatalystRegistry.register(Items.HEART_OF_THE_SEA, new HeartOfTheSea());
-        CatalystRegistry.register(Items.AMETHYST_SHARD, new AmethystShard());
-        CatalystRegistry.register(Items.NETHER_STAR, new NetherStar());
-        CatalystRegistry.register(Items.EXPERIENCE_BOTTLE, new ExperienceBottle());
+        CatalystRegistry.registerFromConfig(Items.EMERALD, new Emerald());
+        CatalystRegistry.registerFromConfig(Items.DIAMOND, new Diamond());
+        CatalystRegistry.registerFromConfig(Items.ENDER_PEARL, new EnderPearl());
+        CatalystRegistry.registerFromConfig(Items.HEART_OF_THE_SEA, new HeartOfTheSea());
+        CatalystRegistry.registerFromConfig(Items.AMETHYST_SHARD, new AmethystShard());
+        CatalystRegistry.registerFromConfig(Items.NETHER_STAR, new NetherStar());
+        CatalystRegistry.registerFromConfig(Items.EXPERIENCE_BOTTLE, new ExperienceBottle());
     }
 
     public static class Emerald implements Catalyst {

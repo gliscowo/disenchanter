@@ -1,5 +1,6 @@
 package com.glisco.disenchanter;
 
+import com.glisco.disenchanter.catalyst.Catalyst;
 import com.glisco.disenchanter.catalyst.CatalystRegistry;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
@@ -79,7 +80,7 @@ public class DisenchanterScreenHandler extends ScreenHandler {
         if (contOpt.isEmpty()) return;
 
         final var world = contOpt.get();
-        final var catalyst = CatalystRegistry.get(inventory.getStack(2).getItem());
+        final var catalyst = CatalystRegistry.get(inventory.getStack(2));
 
         var processedInput = catalyst.transformInput(inventory.getStack(0).copy(), world.random);
 
@@ -87,7 +88,7 @@ public class DisenchanterScreenHandler extends ScreenHandler {
         inventory.setStack(0, processedInput);
 
         decrement(inventory, 1);
-        decrement(inventory, 2);
+        if (catalyst != Catalyst.DEFAULT) decrement(inventory, 2, CatalystRegistry.getRequiredItemCount(catalyst));
 
         this.sendContentUpdates();
 
@@ -137,7 +138,11 @@ public class DisenchanterScreenHandler extends ScreenHandler {
     }
 
     private static void decrement(Inventory inv, int idx) {
-        inv.getStack(idx).decrement(1);
+        decrement(inv, idx, 1);
+    }
+
+    private static void decrement(Inventory inv, int idx, int by) {
+        inv.getStack(idx).decrement(by);
         if (inv.getStack(idx).isEmpty()) inv.setStack(idx, ItemStack.EMPTY);
     }
 }

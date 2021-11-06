@@ -2,6 +2,8 @@ package com.glisco.disenchanter.client;
 
 import com.glisco.disenchanter.Disenchanter;
 import com.glisco.disenchanter.DisenchanterScreenHandler;
+import com.glisco.disenchanter.catalyst.Catalyst;
+import com.glisco.disenchanter.catalyst.CatalystRegistry;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
@@ -18,6 +20,7 @@ public class DisenchanterScreen extends HandledScreen<DisenchanterScreenHandler>
     private static final Identifier TEXTURE = new Identifier("disenchanter", "textures/gui/container/disenchanter.png");
 
     private ButtonWidget disenchantButton = null;
+    private boolean validCatalyst = true;
 
     public DisenchanterScreen(DisenchanterScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
@@ -41,7 +44,13 @@ public class DisenchanterScreen extends HandledScreen<DisenchanterScreenHandler>
         drawMouseoverTooltip(matrices, mouseX, mouseY);
 
         disenchantButton.active = this.handler.getSlot(0).hasStack() && this.handler.getSlot(1).hasStack()
-                && this.handler.getSlot(0).getStack().hasEnchantments() && !this.handler.getSlot(3).hasStack();
+                && this.handler.getSlot(0).getStack().hasEnchantments() && !this.handler.getSlot(3).hasStack()
+                && this.validCatalyst;
+    }
+
+    @Override
+    protected void handledScreenTick() {
+        this.validCatalyst = !this.handler.getSlot(2).hasStack() || CatalystRegistry.get(this.handler.getSlot(2).getStack()) != Catalyst.DEFAULT;
     }
 
     @Override
