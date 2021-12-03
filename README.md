@@ -1,8 +1,8 @@
-# Conjuring
+# Disenchanter
 
 [![modrinth](https://img.shields.io/badge/-modrinth-gray?style=for-the-badge&labelColor=green&labelWidth=15&logo=appveyor&logoColor=white)](https://modrinth.com/mod/disenchanter)
 [![curseforge](https://img.shields.io/badge/-CurseForge-gray?style=for-the-badge&logo=curseforge&labelColor=orange)](https://www.curseforge.com/minecraft/mc-mods/disenchanter)
-[![release](https://img.shields.io/github/v/release/glisco03/conjuring?logo=github&style=for-the-badge)](https://github.com/glisco03/disenchanter/releases)
+[![release](https://img.shields.io/github/v/release/glisco03/disenchanter?logo=github&style=for-the-badge)](https://github.com/glisco03/disenchanter/releases)
 [![discord](https://img.shields.io/discord/825828008644313089?label=wisp%20forest&logo=discord&logoColor=white&style=for-the-badge)](https://discord.gg/xrwHKktV2d)
 
 ## Overview
