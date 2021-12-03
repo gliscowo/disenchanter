@@ -1,9 +1,11 @@
-# Fabric Example Mod
+# Conjuring
 
-## Setup
+[![modrinth](https://img.shields.io/badge/-modrinth-gray?style=for-the-badge&labelColor=green&labelWidth=15&logo=appveyor&logoColor=white)](https://modrinth.com/mod/disenchanter)
+[![curseforge](https://img.shields.io/badge/-CurseForge-gray?style=for-the-badge&logo=curseforge&labelColor=orange)](https://www.curseforge.com/minecraft/mc-mods/disenchanter)
+[![release](https://img.shields.io/github/v/release/glisco03/conjuring?logo=github&style=for-the-badge)](https://github.com/glisco03/disenchanter/releases)
+[![discord](https://img.shields.io/discord/825828008644313089?label=wisp%20forest&logo=discord&logoColor=white&style=for-the-badge)](https://discord.gg/xrwHKktV2d)
 
-For setup instructions please see the [fabric wiki page](https://fabricmc.net/wiki/tutorial:setup) that relates to the IDE that you are using.
+## Overview
 
-## License
-
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+This mod adds a simple Disenchanting Table that allows you to recover Enchantments from items. Under normal conditions, the item does not survive,
+however you can also use one of the many *Catalysts* to recover more than just the first Enchantment and some of them will even let the item survive.
