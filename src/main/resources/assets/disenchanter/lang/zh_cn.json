@@ -1,0 +1,14 @@
+{
+  "block.disenchanter.disenchanter" : "祛魔台",
+  "disenchanter.gui.title" : "祛魔台",
+  "disenchanter.gui.button" : "祛魔",
+  "disenchanter.rei.title" : "催化剂",
+
+  "disenchanter.catalyst.emerald": "回收随机两条附魔，并摧毁物品。",
+  "disenchanter.catalyst.diamond": "回收第一条附魔 + 随机两条附魔，并摧毁物品。",
+  "disenchanter.catalyst.ender_pearl": "回收随机一条附魔，保留物品但物品会减少500点耐久度。",
+  "disenchanter.catalyst.heart_of_the_sea": "回收所有附魔但所有附魔等级-1，并摧毁物品。",
+  "disenchanter.catalyst.amethyst_shard": "回收第一条附魔，并保留物品。",
+  "disenchanter.catalyst.nether_star": "回收所有附魔，并保留物品。",
+  "disenchanter.catalyst.experience_bottle": "回收所有已达最高等级的附魔，并摧毁物品。"
+}
