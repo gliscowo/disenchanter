@@ -1,0 +1,14 @@
+{
+  "block.disenchanter.disenchanter" : "Разочарователь",
+  "disenchanter.gui.title" : "Разочарователь",
+  "disenchanter.gui.button" : "Разочарование",
+  "disenchanter.rei.title" : "Катализатор",
+
+  "disenchanter.catalyst.emerald": "Извлекает двое случайных чар. Уничтожает предмет",
+  "disenchanter.catalyst.diamond": "Извлекает первые, и еще двое случайных чар. Уничтожает предмет",
+  "disenchanter.catalyst.ender_pearl": "Извлекает случайные чары. Сохраняет предмет, но снимает 500 прочности",
+  "disenchanter.catalyst.heart_of_the_sea": "Извлекает все чары, но понижает их на 1 уровень. Уничтожает предмет",
+  "disenchanter.catalyst.amethyst_shard": "Извлекает первые чары. Сохраняет предмет",
+  "disenchanter.catalyst.nether_star": "Извлекает все чары. Сохраняет предмет",
+  "disenchanter.catalyst.experience_bottle": "Извлекает все чары самого высокого уровня. Уничтожает предмет"
+}
