@@ -4,11 +4,11 @@
   "disenchanter.gui.button" : "Disenchant",
   "disenchanter.rei.title" : "Catalyst",
 
-  "disenchanter.catalyst.emerald": "Recovers two random enchantments. Does not preserve the item",
-  "disenchanter.catalyst.diamond": "Recovers the first + two random enchantments. Does not preserve the item",
+  "disenchanter.catalyst.emerald": "Recovers two random enchantments. Destroys the item",
+  "disenchanter.catalyst.diamond": "Recovers the first + two random enchantments. Destroys the item",
   "disenchanter.catalyst.ender_pearl": "Recovers a random enchantment. Preserves the item but deals 500 durability damage",
-  "disenchanter.catalyst.heart_of_the_sea": "Recovers all enchantments but reduces them by 1 level. Does not preserve the item",
+  "disenchanter.catalyst.heart_of_the_sea": "Recovers all enchantments but reduces them by 1 level. Destroys the item",
   "disenchanter.catalyst.amethyst_shard": "Recovers the first enchantment. Preserves the item",
   "disenchanter.catalyst.nether_star": "Recovers all enchantments.  Preserves the item",
-  "disenchanter.catalyst.experience_bottle": "Recovers all enchantments that are at the highest level present on the item. Does not preserve the item"
+  "disenchanter.catalyst.experience_bottle": "Recovers all enchantments that are at the highest level present on the item. Destroys the item"
 }
