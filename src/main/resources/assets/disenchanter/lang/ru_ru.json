@@ -1,0 +1,14 @@
+{
+  "block.disenchanter.disenchanter" : "Разочарователь",
+  "disenchanter.gui.title" : "Разочарователь",
+  "disenchanter.gui.button" : "Разочарование",
+  "disenchanter.rei.title" : "Катализатор",
+
+  "disenchanter.catalyst.emerald": "Возвращает два случайных заклинания. Не сохраняет элемент",
+  "disenchanter.catalyst.diamond": "Возвращает первые + два случайных заклинания. Не сохраняет элемент",
+  "disenchanter.catalyst.ender_pearl": "Возвращает случайное заклинание. Сохраняет предмет, но наносит 500 урона от долговечности",
+  "disenchanter.catalyst.heart_of_the_sea": "Возвращает все чары, но уменьшает их на 1 уровень. Не сохраняет элемент",
+  "disenchanter.catalyst.amethyst_shard": "Возвращает первое заклинание. Сохраняет элемент",
+  "disenchanter.catalyst.nether_star": "Возвращает все чары. Сохраняет элемент",
+  "disenchanter.catalyst.experience_bottle": "Возвращает все чары, которые находятся на самом высоком уровне, присутствующем на предмете. Не сохраняет элемент"
+}
