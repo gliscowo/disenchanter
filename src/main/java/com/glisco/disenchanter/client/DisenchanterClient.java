@@ -49,10 +49,10 @@ public class DisenchanterClient implements ClientModInitializer {
             final var catalystStack = handler.getSlot(2).getStack();
             if (!catalystStack.isEmpty() && stack == catalystStack) {
                 int requiredCount = CatalystRegistry.getRequiredItemCount(catalyst);
-                if (catalystStack.getCount() >= requiredCount) return;
-
-                lines.add(new TranslatableText("text.disenchanter.extra_catalysts_required", requiredCount - catalystStack.getCount())
-                        .formatted(Formatting.RED));
+                if (catalystStack.getCount() < requiredCount) {
+                    lines.add(new TranslatableText("text.disenchanter.extra_catalysts_required", requiredCount - catalystStack.getCount())
+                            .formatted(Formatting.RED));
+                }
             }
 
             if (catalyst != null) {
