@@ -53,6 +53,14 @@ public class DisenchanterScreen extends HandledScreen<DisenchanterScreenHandler>
         this.validCatalyst = !this.handler.getSlot(2).hasStack() || CatalystRegistry.get(this.handler.getSlot(2).getStack()) != Catalyst.DEFAULT;
     }
 
+    public int getBaseX() {
+        return this.x;
+    }
+
+    public int getBaseY() {
+        return this.y;
+    }
+
     @Override
     protected void init() {
         super.init();

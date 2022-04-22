@@ -34,6 +34,11 @@ public final class CatalystRegistry {
         return entry.catalyst;
     }
 
+    public static Catalyst getUnchecked(ItemStack stack) {
+        final var entry = REGISTRY.get(stack.getItem());
+        return entry == null ? Catalyst.DEFAULT : entry.catalyst;
+    }
+
     public static int getRequiredItemCount(Catalyst catalyst) {
         final var candidate = REGISTRY.values().stream().filter(catalystEntry -> catalystEntry.catalyst == catalyst).findAny();
         return candidate.isEmpty() ? -1 : candidate.get().amount;
@@ -51,6 +56,6 @@ public final class CatalystRegistry {
         return new ArrayList<>(REGISTRY.keySet());
     }
 
-    public static final record CatalystEntry(Catalyst catalyst, int amount) {}
+    public record CatalystEntry(Catalyst catalyst, int amount) {}
 
 }
