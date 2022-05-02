@@ -1,0 +1,16 @@
+{
+  "block.disenchanter.disenchanter" : "Onbetoveringstafel",
+  "disenchanter.gui.title" : "Onbetoveringstafel",
+  "disenchanter.gui.button" : "Onbetoveren",
+  "disenchanter.rei.title" : "Katalysator",
+
+  "disenchanter.catalyst.emerald": "Herstelt twee willekeurige betoveringen. Vernietigt het item",
+  "disenchanter.catalyst.diamond": "Herstelt de eerste + twee willekeurige betoveringen. Vernietigt het item",
+  "disenchanter.catalyst.ender_pearl": "Herstelt een willekeurige betovering. Behoudt het item maar brengt 500 schade toe",
+  "disenchanter.catalyst.heart_of_the_sea": "Herstelt alle betoveringen maar vermindert ze met 1 niveau. Vernietigt het item",
+  "disenchanter.catalyst.amethyst_shard": "Herstelt de eerste betovering. Behoudt het item",
+  "disenchanter.catalyst.nether_star": "Herstelt alle betoveringen.  Behoudt het item",
+  "disenchanter.catalyst.experience_bottle": "Herstelt alle betoveringen van het hoogste niveau op het item. Vernietigt het item",
+
+  "text.disenchanter.extra_catalysts_required": "%1$d meer items vereist"
+}
