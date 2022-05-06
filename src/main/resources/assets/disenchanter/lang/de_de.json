@@ -1,0 +1,16 @@
+{
+  "block.disenchanter.disenchanter" : "Entzauberer",
+  "disenchanter.gui.title" : "Entzauberer",
+  "disenchanter.gui.button" : "Entzaubern",
+  "disenchanter.rei.title" : "Katalysator",
+
+  "disenchanter.catalyst.emerald": "Entzieht zwei zufällige Verzauberungen. Zerstört den Gegenstand",
+  "disenchanter.catalyst.diamond": "Entzieht die erste + zwei zufällige Verzauberungen. Zerstört den Gegenstand",
+  "disenchanter.catalyst.ender_pearl": "Entzieht eine zufällige Verzauberung. Erhält den Gegenstand, aber fügt ihm 500 Haltbarkeitsschaden zu",
+  "disenchanter.catalyst.heart_of_the_sea": "Entzieht alle Verzauberungen, aber reduziert sie um eine Stufe. Zerstört den Gegenstand",
+  "disenchanter.catalyst.amethyst_shard": "Entzieht die erste Verzauberung. Erhält den Gegenstand",
+  "disenchanter.catalyst.nether_star": "Entzieht alle Verzauberungen. Erhält den Gegenstand",
+  "disenchanter.catalyst.experience_bottle": "Entzieht alle Verzauberungen mit höchstem Level von allen. Zerstört den Gegenstand",
+
+  "text.disenchanter.extra_catalysts_required": "%1$d mehr Gegenstände benötigt"
+}
