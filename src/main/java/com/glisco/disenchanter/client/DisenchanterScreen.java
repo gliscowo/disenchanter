@@ -12,7 +12,6 @@ import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 
 public class DisenchanterScreen extends HandledScreen<DisenchanterScreenHandler> {
@@ -70,7 +69,7 @@ public class DisenchanterScreen extends HandledScreen<DisenchanterScreenHandler>
         int x = (width - backgroundWidth) / 2;
         int y = (height - backgroundHeight) / 2;
 
-        this.disenchantButton = new ButtonWidget(x + 46, y + 74, 84, 20, new TranslatableText("disenchanter.gui.button"), button1 -> {
+        this.disenchantButton = new ButtonWidget(x + 46, y + 74, 84, 20, Text.translatable("disenchanter.gui.button"), button1 -> {
             ClientPlayNetworking.send(new Identifier(Disenchanter.MOD_ID, "disenchant_request"), PacketByteBufs.empty());
         });
 

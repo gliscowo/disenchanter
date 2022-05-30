@@ -12,17 +12,15 @@ import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-
-import java.util.Random;
 
 public class DisenchanterBlock extends Block {
 
@@ -76,7 +74,7 @@ public class DisenchanterBlock extends Block {
 
         @Override
         public Text getDisplayName() {
-            return new TranslatableText("disenchanter.gui.title");
+            return Text.translatable("disenchanter.gui.title");
         }
 
         @Override

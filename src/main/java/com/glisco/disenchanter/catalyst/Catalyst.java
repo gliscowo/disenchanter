@@ -5,8 +5,7 @@ import net.minecraft.enchantment.EnchantmentLevelEntry;
 import net.minecraft.item.EnchantedBookItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-
-import java.util.Random;
+import net.minecraft.util.math.random.Random;
 
 public interface Catalyst {
 
