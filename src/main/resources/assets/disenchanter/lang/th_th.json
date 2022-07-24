@@ -1,0 +1,17 @@
+{
+  "block.disenchanter.disenchanter" : "โต๊ะไร้มนตร์",
+  "disenchanter.gui.title" : "โต๊ะไร้มนตร์",
+  "disenchanter.gui.button" : "นำการร่ายมนตร์ออก",
+  "disenchanter.rei.title" : "ตัวกระตุ้น",
+
+  "disenchanter.catalyst.emerald": "กู้คืนการร่ายมนตร์แบบสุ่มสองอย่างและทำลายไอเทม",
+  "disenchanter.catalyst.diamond": "กู้คืนการร่ายมนตร์อันแรกสุดและแบบสุ่มอีกสองอย่าง ทำลายไอเทม",
+  "disenchanter.catalyst.ender_pearl": "กู้คืนการร่ายมนตร์แบบสุ่มหนึ่งอย่าง คงรักษาไอเทมไว้แต่ทำให้ไอเทมได้รับดาเมจความคงทน 500 หน่วย",
+  "disenchanter.catalyst.heart_of_the_sea": "กู้คืนการร่ายมนตร์ทุกอย่าง แต่การร่ายมนตร์จะถูกลด 1 เลเวล รวมทั้งทำลายไอเทม",
+  "disenchanter.catalyst.amethyst_shard": "กู้คืนการร่ายมนตร์อันแรกและคงรักษาไอเทมไว้",
+  "disenchanter.catalyst.nether_star": "กู้คืนการร่ายมนตร์ทุกอย่างและคงรักษาไอเทมไว้",
+  "disenchanter.catalyst.experience_bottle": "กู้คืนการร่ายมนตร์ทุกอย่างที่เลเวลเท่ากับเลเวลที่สูงที่สุดที่มี ทำลายไอเทม",
+
+  "text.disenchanter.extra_catalysts_required": "ต้องการไอเทมเพิ่มอีก %1$d",
+  "text.disenchanter.blacklisted": "ติดแบล็คลิสต์"
+}
