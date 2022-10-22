@@ -17,7 +17,7 @@ public final class CatalystRegistry {
 
     private static final Map<Item, CatalystEntry> REGISTRY = new HashMap<>();
 
-    public static void register( DisenchanterConfig.CatalystConfig config, Catalyst catalyst) {
+    public static void register(DisenchanterConfig.CatalystConfig config, Catalyst catalyst) {
         if (!config.enabled) return;
         
         Identifier itemIdentifier = new Identifier(config.item);
@@ -31,7 +31,9 @@ public final class CatalystRegistry {
     }
 
     public static void registerFromConfig(String configKey, Catalyst catalyst) {
-        register(Disenchanter.getConfig().catalysts.get(configKey), catalyst);
+        DisenchanterConfig.CatalystConfig config = Disenchanter.getConfig().catalysts.get(configKey);
+        if ((config.item == "default") || (config.item == null) || (config.item == "")) config.item = configKey;
+        register(config, catalyst);
     }
 
     public static Catalyst get(ItemStack stack) {
