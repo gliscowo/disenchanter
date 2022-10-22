@@ -21,14 +21,14 @@
     "client": [
       "com.glisco.disenchanter.client.DisenchanterClient"
     ],
-    "rei_plugins": [
+    "rei_client": [
       "com.glisco.disenchanter.compat.rei.DisenchanterReiPlugin"
     ]
   },
   "mixins": [
   ],
   "depends": {
-    "fabricloader": ">=0.7.4",
+    "fabricloader": ">=0.14.10",
     "fabric": "*",
     "minecraft": ">=1.18.2",
     "cloth-config2": ">=6.0.0"

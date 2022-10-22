@@ -44,7 +44,7 @@ public class DisenchanterClient implements ClientModInitializer {
             if (!(MinecraftClient.getInstance().player.currentScreenHandler instanceof DisenchanterScreenHandler handler)) return;
 
             if (stack.isIn(Disenchanter.BLACKLIST)) {
-                lines.add(1, Text.translatable("text.disenchanter.blacklisted").formatted(Formatting.DARK_GRAY));
+                lines.add(1, new TranslatableText("text.disenchanter.blacklisted").formatted(Formatting.DARK_GRAY));
             }
 
             final var catalyst = CatalystRegistry.getUnchecked(stack);
