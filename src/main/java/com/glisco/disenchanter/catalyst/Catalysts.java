@@ -16,16 +16,16 @@ import java.util.Objects;
 public class Catalysts {
 
     public static void registerDefaults() {
-        CatalystRegistry.registerFromConfig(Items.EMERALD, new Emerald());
-        CatalystRegistry.registerFromConfig(Items.DIAMOND, new Diamond());
-        CatalystRegistry.registerFromConfig(Items.ENDER_PEARL, new EnderPearl());
-        CatalystRegistry.registerFromConfig(Items.HEART_OF_THE_SEA, new HeartOfTheSea());
-        CatalystRegistry.registerFromConfig(Items.AMETHYST_SHARD, new AmethystShard());
-        CatalystRegistry.registerFromConfig(Items.NETHER_STAR, new NetherStar());
-        CatalystRegistry.registerFromConfig(Items.EXPERIENCE_BOTTLE, new ExperienceBottle());
+        CatalystRegistry.registerFromConfig("minecraft:emerald", new TwoRandomEnchantmentsCatalyst());
+        CatalystRegistry.registerFromConfig("minecraft:diamond", new FirstAndTwoRandomEnchantmentsCatalyst());
+        CatalystRegistry.registerFromConfig("minecraft:ender_pearl", new RandomEnchantmentItemPreservedDamagedCatalyst());
+        CatalystRegistry.registerFromConfig("minecraft:heart_of_the_sea", new AllEnchantmentsDownOneLevelCatalyst());
+        CatalystRegistry.registerFromConfig("minecraft:amethyst_shard", new FirstEnchantmentItemPreservedCatalyst());
+        CatalystRegistry.registerFromConfig("minecraft:nether_star", new AllEnchantmentsItemPreservedCatalyst());
+        CatalystRegistry.registerFromConfig("minecraft:experience_bottle", new HighestLevelEnchantmentsCatalyst());
     }
 
-    public static class Emerald implements Catalyst {
+    public static class TwoRandomEnchantmentsCatalyst implements Catalyst {
 
         @Override
         public ItemStack generateOutput(ItemStack input, Random random) {
@@ -43,7 +43,7 @@ public class Catalysts {
         }
     }
 
-    public static class Diamond implements Catalyst {
+    public static class FirstAndTwoRandomEnchantmentsCatalyst implements Catalyst {
 
         @Override
         public ItemStack generateOutput(ItemStack input, Random random) {
@@ -64,7 +64,7 @@ public class Catalysts {
         }
     }
 
-    public static class EnderPearl implements Catalyst {
+    public static class RandomEnchantmentItemPreservedDamagedCatalyst implements Catalyst {
 
         @Nullable
         private EnchantmentLevelEntry enchantmentCache = null;
@@ -97,7 +97,7 @@ public class Catalysts {
         }
     }
 
-    public static class HeartOfTheSea implements Catalyst {
+    public static class AllEnchantmentsDownOneLevelCatalyst implements Catalyst {
 
         @Override
         public ItemStack generateOutput(ItemStack input, Random random) {
@@ -111,7 +111,7 @@ public class Catalysts {
         }
     }
 
-    public static class AmethystShard implements Catalyst {
+    public static class FirstEnchantmentItemPreservedCatalyst implements Catalyst {
 
         @Override
         public ItemStack transformInput(ItemStack input, Random random) {
@@ -132,7 +132,7 @@ public class Catalysts {
         }
     }
 
-    public static class NetherStar implements Catalyst {
+    public static class AllEnchantmentsItemPreservedCatalyst implements Catalyst {
 
         @Override
         public ItemStack transformInput(ItemStack input, Random random) {
@@ -151,7 +151,7 @@ public class Catalysts {
         }
     }
 
-    public static class ExperienceBottle implements Catalyst {
+    public static class HighestLevelEnchantmentsCatalyst implements Catalyst {
 
         @Override
         public ItemStack generateOutput(ItemStack input, Random random) {
