@@ -15,7 +15,8 @@ import net.minecraft.client.resource.language.I18n;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.Text;
+import net.minecraft.text.LiteralText;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import org.apache.commons.lang3.text.WordUtils;
@@ -53,7 +54,7 @@ public class DisenchanterClient implements ClientModInitializer {
             if (!catalystStack.isEmpty() && stack == catalystStack) {
                 int requiredCount = CatalystRegistry.getRequiredItemCount(catalyst);
                 if (catalystStack.getCount() < requiredCount) {
-                    lines.add(Text.translatable("text.disenchanter.extra_catalysts_required", requiredCount - catalystStack.getCount())
+                    lines.add(new TranslatableText("text.disenchanter.extra_catalysts_required", requiredCount - catalystStack.getCount())
                             .formatted(Formatting.RED));
                 }
             }
@@ -61,7 +62,7 @@ public class DisenchanterClient implements ClientModInitializer {
             if (catalyst != null) {
                 final String description = I18n.translate("disenchanter.catalyst." + stack.getItem().getRegistryEntry().registryKey().getValue().getPath());
                 for (var line : WordUtils.wrap(description, 35).split("\n")) {
-                    lines.add(Text.literal(line).formatted(Formatting.GRAY));
+                    lines.add(new LiteralText(line).formatted(Formatting.GRAY));
                 }
             }
         });

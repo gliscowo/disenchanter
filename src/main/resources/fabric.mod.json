@@ -21,7 +21,7 @@
     "client": [
       "com.glisco.disenchanter.client.DisenchanterClient"
     ],
-    "rei_client": [
+    "rei_plugins": [
       "com.glisco.disenchanter.compat.rei.DisenchanterReiPlugin"
     ]
   },

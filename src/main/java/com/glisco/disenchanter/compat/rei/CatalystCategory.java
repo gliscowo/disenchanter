@@ -10,7 +10,9 @@ import me.shedaniel.rei.api.client.registry.display.DisplayCategory;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Language;
 import net.minecraft.util.registry.Registry;
 import org.apache.commons.lang3.text.WordUtils;
@@ -27,7 +29,7 @@ public class CatalystCategory implements DisplayCategory<CatalystDisplay> {
 
     @Override
     public Text getTitle() {
-        return Text.translatable("disenchanter.rei.title");
+        return new TranslatableText("disenchanter.rei.title");
     }
 
     @Override
@@ -50,7 +52,7 @@ public class CatalystCategory implements DisplayCategory<CatalystDisplay> {
 
         for (int i = 0; i < wrapped.length; i++) {
             widgets.add(Widgets.createLabel(new Point(origin.x + 25 + (bounds.width - 25) / 2, origin.y - 1 + bounds.height / 2 - textHeight / 2 + i * 10),
-                    Text.literal(wrapped[i])).color(0x4F4F4F).noShadow());
+                    new LiteralText(wrapped[i])).color(0x4F4F4F).noShadow());
         }
 
         return widgets;
