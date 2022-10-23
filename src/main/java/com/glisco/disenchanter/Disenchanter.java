@@ -12,6 +12,7 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.screen.ScreenHandlerType;
+import net.minecraft.tag.TagKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -22,6 +23,8 @@ public class Disenchanter implements ModInitializer {
 
     public static final Block DISENCHANTER_BLOCK = new DisenchanterBlock();
     public static final ScreenHandlerType<DisenchanterScreenHandler> DISENCHANTER_SCREEN_HANDLER;
+
+    public static final TagKey<Item> BLACKLIST = TagKey.of(Registry.ITEM_KEY, new Identifier(MOD_ID, "blacklist"));
 
     private static DisenchanterConfig CONFIG;
 

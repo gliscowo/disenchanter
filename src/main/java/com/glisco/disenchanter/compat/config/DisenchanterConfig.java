@@ -23,6 +23,7 @@ public class DisenchanterConfig implements ConfigData {
 
     public static class CatalystConfig {
         public boolean enabled = true;
+        public String item = "default";
         public int required_item_count = 1;
     }
 

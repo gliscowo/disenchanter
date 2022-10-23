@@ -38,7 +38,7 @@ public class DisenchanterScreenHandler extends ScreenHandler {
         this.addSlot(new Slot(inventory, 0, 17, 76) {
             @Override
             public boolean canInsert(ItemStack stack) {
-                return stack.hasEnchantments();
+                return stack.hasEnchantments() && !stack.isIn(Disenchanter.BLACKLIST);
             }
         });
         this.addSlot(new Slot(inventory, 1, 143, 76) {
