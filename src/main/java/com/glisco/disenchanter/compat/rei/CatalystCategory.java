@@ -10,9 +10,9 @@ import me.shedaniel.rei.api.client.registry.display.DisplayCategory;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.Registries;
 import net.minecraft.text.Text;
 import net.minecraft.util.Language;
-import net.minecraft.util.registry.Registry;
 import org.apache.commons.lang3.text.WordUtils;
 
 import java.util.ArrayList;
@@ -42,7 +42,7 @@ public class CatalystCategory implements DisplayCategory<CatalystDisplay> {
 
         widgets.add(Widgets.createSlot(new Point(origin.x + 5, origin.y - 9 + bounds.height / 2)).markInput().entries(display.getInputEntries().get(0)));
 
-        var catalystName = Registry.ITEM.getId(((ItemStack) display.getInputEntries().get(0).get(0).castValue()).getItem()).getPath();
+        var catalystName = Registries.ITEM.getId(((ItemStack) display.getInputEntries().get(0).get(0).castValue()).getItem()).getPath();
         String description = Language.getInstance().get("disenchanter.catalyst." + catalystName);
 
         var wrapped = WordUtils.wrap(description, 20, "\n", false).split("\n");

@@ -4,7 +4,7 @@ import com.glisco.disenchanter.Disenchanter;
 import com.glisco.disenchanter.compat.config.DisenchanterConfig;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.registry.Registries;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,7 +24,7 @@ public final class CatalystRegistry {
     }
 
     public static void registerFromConfig(Item item, Catalyst catalyst) {
-        register(item, catalyst, Disenchanter.getConfig().catalysts.get(Registry.ITEM.getId(item).toString()));
+        register(item, catalyst, Disenchanter.getConfig().catalysts.get(Registries.ITEM.getId(item).toString()));
     }
 
     public static Catalyst get(ItemStack stack) {

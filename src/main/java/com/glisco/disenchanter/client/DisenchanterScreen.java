@@ -69,9 +69,9 @@ public class DisenchanterScreen extends HandledScreen<DisenchanterScreenHandler>
         int x = (width - backgroundWidth) / 2;
         int y = (height - backgroundHeight) / 2;
 
-        this.disenchantButton = new ButtonWidget(x + 46, y + 74, 84, 20, Text.translatable("disenchanter.gui.button"), button1 -> {
-            ClientPlayNetworking.send(new Identifier(Disenchanter.MOD_ID, "disenchant_request"), PacketByteBufs.empty());
-        });
+        this.disenchantButton = new ButtonWidget.Builder(Text.translatable("disenchanter.gui.button"), button1 ->
+            ClientPlayNetworking.send(new Identifier(Disenchanter.MOD_ID, "disenchant_request"), PacketByteBufs.empty())
+        ).position(x + 46, y + 74).size(84, 20).build();
 
         this.disenchantButton.active = false;
 
