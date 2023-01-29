@@ -9,8 +9,8 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
-import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.resource.language.I18n;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
@@ -25,12 +25,12 @@ public class DisenchanterClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        ScreenRegistry.register(Disenchanter.DISENCHANTER_SCREEN_HANDLER, DisenchanterScreen::new);
+        HandledScreens.register(Disenchanter.DISENCHANTER_SCREEN_HANDLER, DisenchanterScreen::new);
 
         ClientPlayNetworking.registerGlobalReceiver(new Identifier(Disenchanter.MOD_ID, "disenchant_event"), (client, handler, buf, responseSender) -> {
             var pos = buf.readBlockPos();
             client.execute(() -> {
-                client.world.playSound(pos, SoundEvents.ITEM_TOTEM_USE, SoundCategory.BLOCKS, .5f, .8f + client.world.random.nextFloat() * .4f, false);
+                client.world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ITEM_TOTEM_USE, SoundCategory.BLOCKS, .5f, .8f + client.world.random.nextFloat() * .4f, false);
 
                 for (int i = 0; i < 100; i++) {
                     client.world.addParticle(ParticleTypes.LAVA, pos.getX() + 0.5, pos.getY() + 0.685, pos.getZ() + 0.5, 0, 0, 0);
