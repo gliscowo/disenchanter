@@ -5,6 +5,7 @@ import com.glisco.disenchanter.compat.config.DisenchanterConfig;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,15 +17,23 @@ public final class CatalystRegistry {
 
     private static final Map<Item, CatalystEntry> REGISTRY = new HashMap<>();
 
-    public static void register(Item item, Catalyst catalyst, DisenchanterConfig.CatalystConfig config) {
-        if (REGISTRY.containsKey(item)) throw new IllegalArgumentException("Attempted to register catalyst for item " + item + "twice");
+    public static void register(DisenchanterConfig.CatalystConfig config, Catalyst catalyst) {
         if (!config.enabled) return;
+        
+        Identifier itemIdentifier = new Identifier(config.item);
+
+        Item item = Registry.ITEM.get(itemIdentifier);
+
+        if (item == null) throw new IllegalArgumentException("Attempted to register catalyst for unknown item " + itemIdentifier);
+        if (REGISTRY.containsKey(item)) throw new IllegalArgumentException("Attempted to register catalyst for item " + item + "twice");
 
         REGISTRY.put(item, new CatalystEntry(catalyst, config.required_item_count));
     }
 
-    public static void registerFromConfig(Item item, Catalyst catalyst) {
-        register(item, catalyst, Disenchanter.getConfig().catalysts.get(Registry.ITEM.getId(item).toString()));
+    public static void registerFromConfig(String configKey, Catalyst catalyst) {
+        DisenchanterConfig.CatalystConfig config = Disenchanter.getConfig().catalysts.get(configKey);
+        if ((config.item == "default") || (config.item == null) || (config.item == "")) config.item = configKey;
+        register(config, catalyst);
     }
 
     public static Catalyst get(ItemStack stack) {
