@@ -7,13 +7,16 @@ import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.fabricmc.fabric.api.screenhandler.v1.ScreenHandlerRegistry;
 import net.minecraft.block.Block;
-import net.minecraft.item.*;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroups;
+import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
+import net.minecraft.resource.featuretoggle.FeatureFlags;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.util.Identifier;
 
@@ -30,7 +33,7 @@ public class Disenchanter implements ModInitializer {
     private static DisenchanterConfig CONFIG;
 
     static {
-        DISENCHANTER_SCREEN_HANDLER = ScreenHandlerRegistry.registerSimple(DISENCHANTER_HANDLER_ID, DisenchanterScreenHandler::new);
+        DISENCHANTER_SCREEN_HANDLER = Registry.register(Registries.SCREEN_HANDLER, DISENCHANTER_HANDLER_ID, new ScreenHandlerType<>(DisenchanterScreenHandler::new, FeatureFlags.DEFAULT_ENABLED_FEATURES));
     }
 
     @Override

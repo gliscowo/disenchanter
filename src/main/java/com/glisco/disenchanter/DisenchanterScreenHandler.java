@@ -132,8 +132,9 @@ public class DisenchanterScreenHandler extends ScreenHandler {
         return newStack;
     }
 
-    public void close(PlayerEntity player) {
-        super.close(player);
+    @Override
+    public void onClosed(PlayerEntity player) {
+        super.onClosed(player);
         this.context.run((world, blockPos) -> this.dropInventory(player, this.inventory));
     }
 
