@@ -3,7 +3,6 @@ package com.glisco.disenchanter;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Material;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -32,7 +31,7 @@ public class DisenchanterBlock extends Block {
     private static final VoxelShape SHAPE = VoxelShapes.union(BASE_SHAPE, CENTER_SHAPE, ARM_1_SHAPE, ARM_2_SHAPE);
 
     public DisenchanterBlock() {
-        super(FabricBlockSettings.of(Material.METAL).hardness(5f).requiresTool());
+        super(FabricBlockSettings.create().hardness(5f).requiresTool());
     }
 
     @Override
@@ -79,7 +78,7 @@ public class DisenchanterBlock extends Block {
 
         @Override
         public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
-            return new DisenchanterScreenHandler(syncId, inv, ScreenHandlerContext.create(player.world, pos));
+            return new DisenchanterScreenHandler(syncId, inv, ScreenHandlerContext.create(player.getWorld(), pos));
         }
     }
 

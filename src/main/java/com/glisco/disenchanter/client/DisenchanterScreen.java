@@ -4,12 +4,11 @@ import com.glisco.disenchanter.Disenchanter;
 import com.glisco.disenchanter.DisenchanterScreenHandler;
 import com.glisco.disenchanter.catalyst.Catalyst;
 import com.glisco.disenchanter.catalyst.CatalystRegistry;
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
@@ -29,18 +28,17 @@ public class DisenchanterScreen extends HandledScreen<DisenchanterScreenHandler>
     }
 
     @Override
-    protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
+    protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY) {
         int x = (width - backgroundWidth) / 2;
         int y = (height - backgroundHeight) / 2;
-        RenderSystem.setShaderTexture(0, TEXTURE);
-        drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
+        context.drawTexture(TEXTURE, x, y, 0, 0, backgroundWidth, backgroundHeight);
     }
 
     @Override
-    public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-        renderBackground(matrices);
-        super.render(matrices, mouseX, mouseY, delta);
-        drawMouseoverTooltip(matrices, mouseX, mouseY);
+    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+        renderBackground(context);
+        super.render(context, mouseX, mouseY, delta);
+        drawMouseoverTooltip(context, mouseX, mouseY);
 
         disenchantButton.active = this.handler.getSlot(0).hasStack() && this.handler.getSlot(1).hasStack()
                 && this.handler.getSlot(0).getStack().hasEnchantments() && !this.handler.getSlot(3).hasStack()
