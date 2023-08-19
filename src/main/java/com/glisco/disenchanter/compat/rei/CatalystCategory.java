@@ -1,6 +1,7 @@
 package com.glisco.disenchanter.compat.rei;
 
 import com.glisco.disenchanter.Disenchanter;
+import com.glisco.disenchanter.VisitableTextContent;
 import me.shedaniel.math.Point;
 import me.shedaniel.math.Rectangle;
 import me.shedaniel.rei.api.client.gui.Renderer;
@@ -9,11 +10,12 @@ import me.shedaniel.rei.api.client.gui.widgets.Widgets;
 import me.shedaniel.rei.api.client.registry.display.DisplayCategory;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.util.EntryStacks;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
+import net.minecraft.text.MutableText;
+import net.minecraft.text.Style;
 import net.minecraft.text.Text;
-import net.minecraft.util.Language;
-import org.apache.commons.lang3.text.WordUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,14 +45,22 @@ public class CatalystCategory implements DisplayCategory<CatalystDisplay> {
         widgets.add(Widgets.createSlot(new Point(origin.x + 5, origin.y - 9 + bounds.height / 2)).markInput().entries(display.getInputEntries().get(0)));
 
         var catalystName = Registries.ITEM.getId(((ItemStack) display.getInputEntries().get(0).get(0).castValue()).getItem()).getPath();
-        String description = Language.getInstance().get("disenchanter.catalyst." + catalystName);
+        var wrapped = MinecraftClient.getInstance().textRenderer.getTextHandler()
+                .wrapLines(
+                        Text.translatable("disenchanter.catalyst." + catalystName),
+                        120, Style.EMPTY
+                )
+                .stream()
+                .map(VisitableTextContent::new)
+                .map(MutableText::of)
+                .toList();
 
-        var wrapped = WordUtils.wrap(description, 20, "\n", false).split("\n");
-        int textHeight = wrapped.length * 10;
-
-        for (int i = 0; i < wrapped.length; i++) {
-            widgets.add(Widgets.createLabel(new Point(origin.x + 25 + (bounds.width - 25) / 2, origin.y - 1 + bounds.height / 2 - textHeight / 2 + i * 10),
-                    Text.literal(wrapped[i])).color(0x4F4F4F).noShadow());
+        int textHeight = wrapped.size() * 10;
+        for (int i = 0; i < wrapped.size(); i++) {
+            widgets.add(Widgets.createLabel(
+                    new Point(origin.x + 25 + (bounds.width - 25) / 2, origin.y - 1 + bounds.height / 2 - textHeight / 2 + i * 10),
+                    wrapped.get(i)
+            ).color(0x4F4F4F).noShadow());
         }
 
         return widgets;

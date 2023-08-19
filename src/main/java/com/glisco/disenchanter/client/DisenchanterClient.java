@@ -2,6 +2,7 @@ package com.glisco.disenchanter.client;
 
 import com.glisco.disenchanter.Disenchanter;
 import com.glisco.disenchanter.DisenchanterScreenHandler;
+import com.glisco.disenchanter.VisitableTextContent;
 import com.glisco.disenchanter.catalyst.Catalyst;
 import com.glisco.disenchanter.catalyst.CatalystRegistry;
 import net.fabricmc.api.ClientModInitializer;
@@ -11,14 +12,12 @@ import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
-import net.minecraft.client.resource.language.I18n;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.Text;
+import net.minecraft.text.*;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
-import org.apache.commons.lang3.text.WordUtils;
 
 @Environment(EnvType.CLIENT)
 public class DisenchanterClient implements ClientModInitializer {
@@ -40,7 +39,9 @@ public class DisenchanterClient implements ClientModInitializer {
 
         ItemTooltipCallback.EVENT.register((stack, context, lines) -> {
             if (MinecraftClient.getInstance().player == null) return;
-            if (!(MinecraftClient.getInstance().player.currentScreenHandler instanceof DisenchanterScreenHandler handler)) return;
+            if (!(MinecraftClient.getInstance().player.currentScreenHandler instanceof DisenchanterScreenHandler handler)) {
+                return;
+            }
 
             if (stack.isIn(Disenchanter.BLACKLIST)) {
                 lines.add(1, Text.translatable("text.disenchanter.blacklisted").formatted(Formatting.DARK_GRAY));
@@ -59,11 +60,18 @@ public class DisenchanterClient implements ClientModInitializer {
             }
 
             if (catalyst != null) {
-                final String description = I18n.translate("disenchanter.catalyst." + stack.getItem().getRegistryEntry().registryKey().getValue().getPath());
-                for (var line : WordUtils.wrap(description, 35).split("\n")) {
-                    lines.add(Text.literal(line).formatted(Formatting.GRAY));
-                }
+                MinecraftClient.getInstance().textRenderer.getTextHandler()
+                        .wrapLines(
+                                Text.translatable("disenchanter.catalyst." + stack.getItem().getRegistryEntry().registryKey().getValue().getPath()),
+                                200,
+                                Style.EMPTY.withColor(Formatting.DARK_GRAY)
+                        )
+                        .stream()
+                        .map(VisitableTextContent::new)
+                        .map(MutableText::of)
+                        .forEach(lines::add);
             }
         });
     }
+
 }
