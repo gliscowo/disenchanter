@@ -29,18 +29,15 @@ public class DisenchanterScreen extends HandledScreen<DisenchanterScreenHandler>
 
     @Override
     protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY) {
-        int x = (width - backgroundWidth) / 2;
-        int y = (height - backgroundHeight) / 2;
-        context.drawTexture(TEXTURE, x, y, 0, 0, backgroundWidth, backgroundHeight);
+        context.drawTexture(TEXTURE, this.x, this.y, 0, 0, this.backgroundWidth, this.backgroundHeight);
     }
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        renderBackground(context);
         super.render(context, mouseX, mouseY, delta);
-        drawMouseoverTooltip(context, mouseX, mouseY);
+        this.drawMouseoverTooltip(context, mouseX, mouseY);
 
-        disenchantButton.active = this.handler.getSlot(0).hasStack() && this.handler.getSlot(1).hasStack()
+        this.disenchantButton.active = this.handler.getSlot(0).hasStack() && this.handler.getSlot(1).hasStack()
                 && this.handler.getSlot(0).getStack().hasEnchantments() && !this.handler.getSlot(3).hasStack()
                 && this.validCatalyst;
     }
@@ -61,18 +58,12 @@ public class DisenchanterScreen extends HandledScreen<DisenchanterScreenHandler>
     @Override
     protected void init() {
         super.init();
-        // Center the title
-        titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2;
+        this.titleX = (this.backgroundWidth - this.textRenderer.getWidth(this.title)) / 2;
 
-        int x = (width - backgroundWidth) / 2;
-        int y = (height - backgroundHeight) / 2;
-
-        this.disenchantButton = new ButtonWidget.Builder(Text.translatable("disenchanter.gui.button"), button1 ->
+        this.disenchantButton = new ButtonWidget.Builder(Text.translatable("disenchanter.gui.button"), button ->
             ClientPlayNetworking.send(new Identifier(Disenchanter.MOD_ID, "disenchant_request"), PacketByteBufs.empty())
-        ).position(x + 46, y + 74).size(84, 20).build();
-
+        ).position(this.x + 46, this.y + 74).size(84, 20).build();
         this.disenchantButton.active = false;
-
         this.addDrawableChild(disenchantButton);
     }
 }
