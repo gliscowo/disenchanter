@@ -13,5 +13,5 @@
   "disenchanter.catalyst.experience_bottle": "回收所有已达最高等级的附魔，并摧毁物品。",
 
   "text.disenchanter.extra_catalysts_required": "还需%1$d个物品",
-  "text.disenchanter.blacklisted": "已禁用"
+  "text.disenchanter.blacklisted": "不可祛魔"
 }
