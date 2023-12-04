@@ -19,4 +19,4 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: build-artifacts
-        path: fabric/build/libs/
+        path: build/libs/
