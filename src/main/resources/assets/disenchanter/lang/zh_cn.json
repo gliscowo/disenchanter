@@ -10,5 +10,8 @@
   "disenchanter.catalyst.heart_of_the_sea": "回收所有附魔但所有附魔等级-1，并摧毁物品。",
   "disenchanter.catalyst.amethyst_shard": "回收第一条附魔，并保留物品。",
   "disenchanter.catalyst.nether_star": "回收所有附魔，并保留物品。",
-  "disenchanter.catalyst.experience_bottle": "回收所有已达最高等级的附魔，并摧毁物品。"
+  "disenchanter.catalyst.experience_bottle": "回收所有已达最高等级的附魔，并摧毁物品。",
+
+  "text.disenchanter.extra_catalysts_required": "还需%1$d个物品",
+  "text.disenchanter.blacklisted": "不可祛魔"
 }
