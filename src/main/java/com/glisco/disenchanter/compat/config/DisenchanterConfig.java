@@ -11,7 +11,7 @@ public class DisenchanterConfig implements ConfigData {
 
     public Map<String, CatalystConfig> catalysts = new HashMap<>();
     public boolean allowDisenchantingWithoutCatalyst = true;
-    
+
     public DisenchanterConfig() {
         catalysts.put("minecraft:emerald", new CatalystConfig());
         catalysts.put("minecraft:diamond", new CatalystConfig());
