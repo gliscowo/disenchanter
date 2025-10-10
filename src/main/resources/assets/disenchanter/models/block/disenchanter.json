@@ -5,7 +5,8 @@
 		"bottom": "disenchanter:block/disenchanter_bottom",
 		"particle": "disenchanter:block/disenchanter_top",
 		"top": "disenchanter:block/disenchanter_top",
-		"side": "disenchanter:block/disenchanter_side"
+		"side": "disenchanter:block/disenchanter_side",
+		"missing": "disenchanter:block/disenchanter_bottom"
 	},
 	"elements": [
 		{
