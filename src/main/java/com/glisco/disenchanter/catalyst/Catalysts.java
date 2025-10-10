@@ -94,7 +94,7 @@ public class Catalysts {
             var resultStack = new ItemStack(Items.ENCHANTED_BOOK);
 
             if (enchantmentCache == null) throw new IllegalStateException();
-            resultStack.addEnchantment(enchantmentCache.enchantment, enchantmentCache.level);
+            resultStack.addEnchantment(enchantmentCache.enchantment(), enchantmentCache.level());
 
             enchantmentCache = null;
             return resultStack;
