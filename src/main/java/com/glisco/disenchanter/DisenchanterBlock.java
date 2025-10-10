@@ -1,9 +1,12 @@
 package com.glisco.disenchanter;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.particle.ParticleTypes;
@@ -40,24 +43,39 @@ public class DisenchanterBlock extends Block {
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-        if (!world.isClient) player.openHandledScreen(new Factory(pos));
+        if (!world.isClient()) player.openHandledScreen(new Factory(pos, world));
         return ActionResult.SUCCESS;
     }
 
     @Override
+    @Environment(EnvType.CLIENT)
     public void randomDisplayTick(BlockState blockState, World world, BlockPos pos, Random random) {
+        // randomDisplayTick only runs on the client side
+        var client = MinecraftClient.getInstance();
+        if (client == null || client.particleManager == null) return;
+        
         if (random.nextFloat() > 0.5f) {
             for (int i = 0; i < 2; i++) {
                 spawnEnchantParticle(world, pos, pos.add(random.nextInt(3) - 1, 2, random.nextInt(3) - 1), 0f, 0.5f, 0f, 0f);
             }
         } else {
             for (int i = 0; i < 2; i++) {
-                world.addParticle(ParticleTypes.SMOKE, pos.getX() + 0.5f + (random.nextFloat() - 0.5) * 0.25f, pos.getY() + 0.8f, pos.getZ() + 0.5f + (random.nextFloat() - 0.5) * 0.25f, (random.nextFloat() - 0.5) * 0.01f, (random.nextFloat() - 0.5) * 0.01f, (random.nextFloat() - 0.5) * 0.01f);
+                client.particleManager.addParticle(ParticleTypes.SMOKE,
+                    pos.getX() + 0.5 + (random.nextFloat() - 0.5) * 0.25, 
+                    pos.getY() + 0.8, 
+                    pos.getZ() + 0.5 + (random.nextFloat() - 0.5) * 0.25, 
+                    (random.nextFloat() - 0.5) * 0.01, 
+                    (random.nextFloat() - 0.5) * 0.01, 
+                    (random.nextFloat() - 0.5) * 0.01);
             }
         }
     }
 
+    @Environment(EnvType.CLIENT)
     public static void spawnEnchantParticle(World world, BlockPos origin, BlockPos destination, float offsetX, float offsetY, float offsetZ, float deviation) {
+        var client = MinecraftClient.getInstance();
+        if (client == null || client.particleManager == null) return;
+        
         Random r = world.getRandom();
         BlockPos particleVector = origin.subtract(destination);
 
@@ -65,10 +83,14 @@ public class DisenchanterBlock extends Block {
         double originY = particleVector.getY() + offsetY + (r.nextDouble() - 0.5) * deviation;
         double originZ = particleVector.getZ() + offsetZ + (r.nextDouble() - 0.5) * deviation;
 
-        world.addParticle(ParticleTypes.ENCHANT, destination.getX() + 0.5f, destination.getY(), destination.getZ() + 0.5f, originX, originY, originZ);
+        client.particleManager.addParticle(ParticleTypes.ENCHANT,
+            destination.getX() + 0.5, 
+            destination.getY(), 
+            destination.getZ() + 0.5, 
+            originX, originY, originZ);
     }
 
-    private record Factory(BlockPos pos) implements NamedScreenHandlerFactory {
+    private record Factory(BlockPos pos, World world) implements NamedScreenHandlerFactory {
 
         @Override
         public Text getDisplayName() {
@@ -77,7 +99,7 @@ public class DisenchanterBlock extends Block {
 
         @Override
         public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
-            return new DisenchanterScreenHandler(syncId, inv, ScreenHandlerContext.create(player.getWorld(), pos));
+            return new DisenchanterScreenHandler(syncId, inv, ScreenHandlerContext.create(world, pos));
         }
     }
 

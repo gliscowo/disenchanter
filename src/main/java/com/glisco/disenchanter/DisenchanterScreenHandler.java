@@ -76,17 +76,8 @@ public class DisenchanterScreenHandler extends ScreenHandler {
         if (contOpt.isEmpty()) return;
 
         final var world = contOpt.get();
-        final var catalystStack = inventory.getStack(2);
-        if (!Disenchanter.getConfig().allowDisenchantingWithoutCatalyst && catalystStack.isEmpty()) return;
 
-        final var catalyst = CatalystRegistry.get(catalystStack);
-        var processedInput = catalyst.transformInput(inventory.getStack(0).copy(), world.random);
-
-        inventory.setStack(3, catalyst.generateOutput(inventory.getStack(0).copy(), world.random));
-        inventory.setStack(0, processedInput);
-
-        decrement(inventory, 1);
-        if (catalyst != Catalyst.DEFAULT) decrement(inventory, 2, CatalystRegistry.getRequiredItemCount(catalyst));
+        DisenchantingLogic.performDisenchant(this.inventory, world.random, Disenchanter.getConfig().allowDisenchantingWithoutCatalyst());
 
         this.sendContentUpdates();
 

@@ -1,30 +1,100 @@
 package com.glisco.disenchanter.compat.config;
 
-import me.shedaniel.autoconfig.ConfigData;
-import me.shedaniel.autoconfig.annotation.Config;
+import io.wispforest.owo.config.annotation.Config;
+import io.wispforest.owo.config.annotation.Modmenu;
+import io.wispforest.owo.config.annotation.Nest;
+import io.wispforest.owo.config.annotation.RangeConstraint;
+import io.wispforest.owo.config.annotation.SectionHeader;
 
-import java.util.HashMap;
-import java.util.Map;
+@Modmenu(modId = "disenchanter")
+@Config(name = "disenchanter", wrapperName = "DisenchanterConfigModel")
+public class DisenchanterConfig {
 
-@Config(name = "disenchanter")
-public class DisenchanterConfig implements ConfigData {
-
-    public Map<String, CatalystConfig> catalysts = new HashMap<>();
+    @SectionHeader("general")
     public boolean allowDisenchantingWithoutCatalyst = true;
 
-    public DisenchanterConfig() {
-        catalysts.put("minecraft:emerald", new CatalystConfig());
-        catalysts.put("minecraft:diamond", new CatalystConfig());
-        catalysts.put("minecraft:ender_pearl", new CatalystConfig());
-        catalysts.put("minecraft:heart_of_the_sea", new CatalystConfig());
-        catalysts.put("minecraft:amethyst_shard", new CatalystConfig());
-        catalysts.put("minecraft:nether_star", new CatalystConfig());
-        catalysts.put("minecraft:experience_bottle", new CatalystConfig());
-    }
+    @SectionHeader("catalystSettings")
+    @Nest
+    public EmeraldSettings emerald = new EmeraldSettings();
+    @Nest
+    public DiamondSettings diamond = new DiamondSettings();
+    @Nest
+    public EnderPearlSettings enderPearl = new EnderPearlSettings();
+    @Nest
+    public HeartOfTheSeaSettings heartOfTheSea = new HeartOfTheSeaSettings();
+    @Nest
+    public AmethystShardSettings amethystShard = new AmethystShardSettings();
+    @Nest
+    public NetherStarSettings netherStar = new NetherStarSettings();
+    @Nest
+    public ExperienceBottleSettings experienceBottle = new ExperienceBottleSettings();
 
-    public static class CatalystConfig {
+    public static class EmeraldSettings {
         public boolean enabled = true;
-        public int required_item_count = 1;
+        @RangeConstraint(min = 1, max = 64)
+        public int requiredItemCount = 1;
     }
 
+    public static class DiamondSettings {
+        public boolean enabled = true;
+        @RangeConstraint(min = 1, max = 64)
+        public int requiredItemCount = 1;
+    }
+
+    public static class EnderPearlSettings {
+        public boolean enabled = true;
+        @RangeConstraint(min = 1, max = 64)
+        public int requiredItemCount = 1;
+    }
+
+    public static class HeartOfTheSeaSettings {
+        public boolean enabled = true;
+        @RangeConstraint(min = 1, max = 64)
+        public int requiredItemCount = 1;
+    }
+
+    public static class AmethystShardSettings {
+        public boolean enabled = true;
+        @RangeConstraint(min = 1, max = 64)
+        public int requiredItemCount = 4;
+    }
+
+    public static class NetherStarSettings {
+        public boolean enabled = true;
+        @RangeConstraint(min = 1, max = 64)
+        public int requiredItemCount = 1;
+    }
+
+    public static class ExperienceBottleSettings {
+        public boolean enabled = true;
+        @RangeConstraint(min = 1, max = 64)
+        public int requiredItemCount = 1;
+    }
+
+    // Helper methods for legacy Map-based access
+    public boolean isCatalystEnabled(String itemId) {
+        return switch (itemId) {
+            case "minecraft:emerald" -> emerald.enabled;
+            case "minecraft:diamond" -> diamond.enabled;
+            case "minecraft:ender_pearl" -> enderPearl.enabled;
+            case "minecraft:heart_of_the_sea" -> heartOfTheSea.enabled;
+            case "minecraft:amethyst_shard" -> amethystShard.enabled;
+            case "minecraft:nether_star" -> netherStar.enabled;
+            case "minecraft:experience_bottle" -> experienceBottle.enabled;
+            default -> false;
+        };
+    }
+
+    public int getRequiredItemCount(String itemId) {
+        return switch (itemId) {
+            case "minecraft:emerald" -> emerald.requiredItemCount;
+            case "minecraft:diamond" -> diamond.requiredItemCount;
+            case "minecraft:ender_pearl" -> enderPearl.requiredItemCount;
+            case "minecraft:heart_of_the_sea" -> heartOfTheSea.requiredItemCount;
+            case "minecraft:amethyst_shard" -> amethystShard.requiredItemCount;
+            case "minecraft:nether_star" -> netherStar.requiredItemCount;
+            case "minecraft:experience_bottle" -> experienceBottle.requiredItemCount;
+            default -> 1;
+        };
+    }
 }

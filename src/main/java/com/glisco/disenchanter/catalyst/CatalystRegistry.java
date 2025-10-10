@@ -16,15 +16,26 @@ public final class CatalystRegistry {
 
     private static final Map<Item, CatalystEntry> REGISTRY = new HashMap<>();
 
-    public static void register(Item item, Catalyst catalyst, DisenchanterConfig.CatalystConfig config) {
+    public static void register(Item item, Catalyst catalyst, boolean enabled, int requiredCount) {
         if (REGISTRY.containsKey(item)) throw new IllegalArgumentException("Attempted to register catalyst for item " + item + "twice");
-        if (!config.enabled) return;
+        if (!enabled) return;
 
-        REGISTRY.put(item, new CatalystEntry(catalyst, config.required_item_count));
+        REGISTRY.put(item, new CatalystEntry(catalyst, requiredCount));
     }
 
     public static void registerFromConfig(Item item, Catalyst catalyst) {
-        register(item, catalyst, Disenchanter.getConfig().catalysts.get(Registries.ITEM.getId(item).toString()));
+        var itemId = Registries.ITEM.getId(item).toString();
+        var config = Disenchanter.getConfig();
+        
+        switch (itemId) {
+            case "minecraft:emerald" -> register(item, catalyst, config.emerald.enabled(), config.emerald.requiredItemCount());
+            case "minecraft:diamond" -> register(item, catalyst, config.diamond.enabled(), config.diamond.requiredItemCount());
+            case "minecraft:ender_pearl" -> register(item, catalyst, config.enderPearl.enabled(), config.enderPearl.requiredItemCount());
+            case "minecraft:heart_of_the_sea" -> register(item, catalyst, config.heartOfTheSea.enabled(), config.heartOfTheSea.requiredItemCount());
+            case "minecraft:amethyst_shard" -> register(item, catalyst, config.amethystShard.enabled(), config.amethystShard.requiredItemCount());
+            case "minecraft:nether_star" -> register(item, catalyst, config.netherStar.enabled(), config.netherStar.requiredItemCount());
+            case "minecraft:experience_bottle" -> register(item, catalyst, config.experienceBottle.enabled(), config.experienceBottle.requiredItemCount());
+        }
     }
 
     public static Catalyst get(ItemStack stack) {
