@@ -13,111 +13,88 @@ public class DisenchanterConfig {
     @SectionHeader("general")
     public boolean allowDisenchantingWithoutCatalyst = true;
 
-    @SectionHeader("catalystBehaviors")
+    @SectionHeader("catalystSettings")
     @Nest
-    public TwoRandomBehavior twoRandom = new TwoRandomBehavior("minecraft:emerald", 1);
+    public EmeraldSettings emerald = new EmeraldSettings();
     @Nest
-    public FirstPlusTwoRandomBehavior firstPlusTwoRandom = new FirstPlusTwoRandomBehavior("minecraft:diamond", 1);
+    public DiamondSettings diamond = new DiamondSettings();
     @Nest
-    public OneRandomPreserveItemBehavior oneRandomPreserveItem = new OneRandomPreserveItemBehavior("minecraft:ender_pearl", 1);
+    public EnderPearlSettings enderPearl = new EnderPearlSettings();
     @Nest
-    public AllReducedLevelBehavior allReducedLevel = new AllReducedLevelBehavior("minecraft:heart_of_the_sea", 1);
+    public HeartOfTheSeaSettings heartOfTheSea = new HeartOfTheSeaSettings();
     @Nest
-    public FirstOnlyPreserveItemBehavior firstOnlyPreserveItem = new FirstOnlyPreserveItemBehavior("minecraft:amethyst_shard", 4);
+    public AmethystShardSettings amethystShard = new AmethystShardSettings();
     @Nest
-    public AllFullLevelPreserveItemBehavior allFullLevelPreserveItem = new AllFullLevelPreserveItemBehavior("minecraft:nether_star", 1);
+    public NetherStarSettings netherStar = new NetherStarSettings();
     @Nest
-    public MaxLevelOnlyBehavior maxLevelOnly = new MaxLevelOnlyBehavior("minecraft:experience_bottle", 1);
+    public ExperienceBottleSettings experienceBottle = new ExperienceBottleSettings();
 
-    public static class TwoRandomBehavior {
+    public static class EmeraldSettings {
         public boolean enabled = true;
-        public String itemId = "minecraft:emerald";
         @RangeConstraint(min = 1, max = 64)
         public int requiredItemCount = 1;
-        
-        public TwoRandomBehavior() {}
-        public TwoRandomBehavior(String itemId, int count) {
-            this.itemId = itemId;
-            this.requiredItemCount = count;
-        }
     }
 
-    public static class FirstPlusTwoRandomBehavior {
+    public static class DiamondSettings {
         public boolean enabled = true;
-        public String itemId = "minecraft:diamond";
         @RangeConstraint(min = 1, max = 64)
         public int requiredItemCount = 1;
-        
-        public FirstPlusTwoRandomBehavior() {}
-        public FirstPlusTwoRandomBehavior(String itemId, int count) {
-            this.itemId = itemId;
-            this.requiredItemCount = count;
-        }
     }
 
-    public static class OneRandomPreserveItemBehavior {
+    public static class EnderPearlSettings {
         public boolean enabled = true;
-        public String itemId = "minecraft:ender_pearl";
         @RangeConstraint(min = 1, max = 64)
         public int requiredItemCount = 1;
-        
-        public OneRandomPreserveItemBehavior() {}
-        public OneRandomPreserveItemBehavior(String itemId, int count) {
-            this.itemId = itemId;
-            this.requiredItemCount = count;
-        }
     }
 
-    public static class AllReducedLevelBehavior {
+    public static class HeartOfTheSeaSettings {
         public boolean enabled = true;
-        public String itemId = "minecraft:heart_of_the_sea";
         @RangeConstraint(min = 1, max = 64)
         public int requiredItemCount = 1;
-        
-        public AllReducedLevelBehavior() {}
-        public AllReducedLevelBehavior(String itemId, int count) {
-            this.itemId = itemId;
-            this.requiredItemCount = count;
-        }
     }
 
-    public static class FirstOnlyPreserveItemBehavior {
+    public static class AmethystShardSettings {
         public boolean enabled = true;
-        public String itemId = "minecraft:amethyst_shard";
         @RangeConstraint(min = 1, max = 64)
         public int requiredItemCount = 4;
-        
-        public FirstOnlyPreserveItemBehavior() {}
-        public FirstOnlyPreserveItemBehavior(String itemId, int count) {
-            this.itemId = itemId;
-            this.requiredItemCount = count;
-        }
     }
 
-    public static class AllFullLevelPreserveItemBehavior {
+    public static class NetherStarSettings {
         public boolean enabled = true;
-        public String itemId = "minecraft:nether_star";
         @RangeConstraint(min = 1, max = 64)
         public int requiredItemCount = 1;
-        
-        public AllFullLevelPreserveItemBehavior() {}
-        public AllFullLevelPreserveItemBehavior(String itemId, int count) {
-            this.itemId = itemId;
-            this.requiredItemCount = count;
-        }
     }
 
-    public static class MaxLevelOnlyBehavior {
+    public static class ExperienceBottleSettings {
         public boolean enabled = true;
-        public String itemId = "minecraft:experience_bottle";
         @RangeConstraint(min = 1, max = 64)
         public int requiredItemCount = 1;
-        
-        public MaxLevelOnlyBehavior() {}
-        public MaxLevelOnlyBehavior(String itemId, int count) {
-            this.itemId = itemId;
-            this.requiredItemCount = count;
-        }
     }
 
+    // Helper methods for legacy Map-based access
+    public boolean isCatalystEnabled(String itemId) {
+        return switch (itemId) {
+            case "minecraft:emerald" -> emerald.enabled;
+            case "minecraft:diamond" -> diamond.enabled;
+            case "minecraft:ender_pearl" -> enderPearl.enabled;
+            case "minecraft:heart_of_the_sea" -> heartOfTheSea.enabled;
+            case "minecraft:amethyst_shard" -> amethystShard.enabled;
+            case "minecraft:nether_star" -> netherStar.enabled;
+            case "minecraft:experience_bottle" -> experienceBottle.enabled;
+            default -> false;
+        };
+    }
+
+    public int getRequiredItemCount(String itemId) {
+        return switch (itemId) {
+            case "minecraft:emerald" -> emerald.requiredItemCount;
+            case "minecraft:diamond" -> diamond.requiredItemCount;
+            case "minecraft:ender_pearl" -> enderPearl.requiredItemCount;
+            case "minecraft:heart_of_the_sea" -> heartOfTheSea.requiredItemCount;
+            case "minecraft:amethyst_shard" -> amethystShard.requiredItemCount;
+            case "minecraft:nether_star" -> netherStar.requiredItemCount;
+            case "minecraft:experience_bottle" -> experienceBottle.requiredItemCount;
+            default -> 1;
+        };
+    }
 }

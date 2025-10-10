@@ -19,27 +19,13 @@ import java.util.Objects;
 public class Catalysts {
 
     public static void registerDefaults() {
-        var config = com.glisco.disenchanter.Disenchanter.getConfig();
-        
-        System.out.println("[Disenchanter] Loading catalyst configuration...");
-        
-        // Register behavior-based catalysts using configured item IDs
-        CatalystRegistry.registerBehavior(config.twoRandom.itemId(), new Emerald(), 
-            config.twoRandom.enabled(), config.twoRandom.requiredItemCount());
-        CatalystRegistry.registerBehavior(config.firstPlusTwoRandom.itemId(), new Diamond(), 
-            config.firstPlusTwoRandom.enabled(), config.firstPlusTwoRandom.requiredItemCount());
-        CatalystRegistry.registerBehavior(config.oneRandomPreserveItem.itemId(), new EnderPearl(), 
-            config.oneRandomPreserveItem.enabled(), config.oneRandomPreserveItem.requiredItemCount());
-        CatalystRegistry.registerBehavior(config.allReducedLevel.itemId(), new HeartOfTheSea(), 
-            config.allReducedLevel.enabled(), config.allReducedLevel.requiredItemCount());
-        CatalystRegistry.registerBehavior(config.firstOnlyPreserveItem.itemId(), new AmethystShard(), 
-            config.firstOnlyPreserveItem.enabled(), config.firstOnlyPreserveItem.requiredItemCount());
-        CatalystRegistry.registerBehavior(config.allFullLevelPreserveItem.itemId(), new NetherStar(), 
-            config.allFullLevelPreserveItem.enabled(), config.allFullLevelPreserveItem.requiredItemCount());
-        CatalystRegistry.registerBehavior(config.maxLevelOnly.itemId(), new ExperienceBottle(), 
-            config.maxLevelOnly.enabled(), config.maxLevelOnly.requiredItemCount());
-        
-        System.out.println("[Disenchanter] Catalyst registration complete");
+        CatalystRegistry.registerFromConfig(Items.EMERALD, new Emerald());
+        CatalystRegistry.registerFromConfig(Items.DIAMOND, new Diamond());
+        CatalystRegistry.registerFromConfig(Items.ENDER_PEARL, new EnderPearl());
+        CatalystRegistry.registerFromConfig(Items.HEART_OF_THE_SEA, new HeartOfTheSea());
+        CatalystRegistry.registerFromConfig(Items.AMETHYST_SHARD, new AmethystShard());
+        CatalystRegistry.registerFromConfig(Items.NETHER_STAR, new NetherStar());
+        CatalystRegistry.registerFromConfig(Items.EXPERIENCE_BOTTLE, new ExperienceBottle());
     }
 
     public static class Emerald implements Catalyst {

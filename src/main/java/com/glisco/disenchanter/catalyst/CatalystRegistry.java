@@ -17,39 +17,25 @@ public final class CatalystRegistry {
     private static final Map<Item, CatalystEntry> REGISTRY = new HashMap<>();
 
     public static void register(Item item, Catalyst catalyst, boolean enabled, int requiredCount) {
-        if (REGISTRY.containsKey(item)) {
-            // Allow re-registration for config reloads
-            REGISTRY.remove(item);
-        }
+        if (REGISTRY.containsKey(item)) throw new IllegalArgumentException("Attempted to register catalyst for item " + item + "twice");
         if (!enabled) return;
 
         REGISTRY.put(item, new CatalystEntry(catalyst, requiredCount));
     }
 
-    public static void reload() {
-        REGISTRY.clear();
-    }
-
-    public static void registerBehavior(String itemId, Catalyst catalyst, boolean enabled, int requiredCount) {
-        if (!enabled) {
-            System.out.println("[Disenchanter] Skipping disabled catalyst: " + itemId);
-            return;
-        }
+    public static void registerFromConfig(Item item, Catalyst catalyst) {
+        var itemId = Registries.ITEM.getId(item).toString();
+        var config = Disenchanter.getConfig();
         
-        var identifier = net.minecraft.util.Identifier.tryParse(itemId);
-        if (identifier == null) {
-            System.err.println("[Disenchanter] Invalid item ID for catalyst: " + itemId);
-            return;
+        switch (itemId) {
+            case "minecraft:emerald" -> register(item, catalyst, config.emerald.enabled(), config.emerald.requiredItemCount());
+            case "minecraft:diamond" -> register(item, catalyst, config.diamond.enabled(), config.diamond.requiredItemCount());
+            case "minecraft:ender_pearl" -> register(item, catalyst, config.enderPearl.enabled(), config.enderPearl.requiredItemCount());
+            case "minecraft:heart_of_the_sea" -> register(item, catalyst, config.heartOfTheSea.enabled(), config.heartOfTheSea.requiredItemCount());
+            case "minecraft:amethyst_shard" -> register(item, catalyst, config.amethystShard.enabled(), config.amethystShard.requiredItemCount());
+            case "minecraft:nether_star" -> register(item, catalyst, config.netherStar.enabled(), config.netherStar.requiredItemCount());
+            case "minecraft:experience_bottle" -> register(item, catalyst, config.experienceBottle.enabled(), config.experienceBottle.requiredItemCount());
         }
-        
-        var item = Registries.ITEM.get(identifier);
-        if (item == null || item == net.minecraft.item.Items.AIR) {
-            System.err.println("[Disenchanter] Item not found for catalyst: " + itemId);
-            return;
-        }
-        
-        System.out.println("[Disenchanter] Registering catalyst: " + itemId + " (x" + requiredCount + ") -> " + catalyst.getClass().getSimpleName());
-        register(item, catalyst, true, requiredCount);
     }
 
     public static Catalyst get(ItemStack stack) {
