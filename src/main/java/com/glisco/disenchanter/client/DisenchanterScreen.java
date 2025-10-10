@@ -5,7 +5,6 @@ import com.glisco.disenchanter.DisenchanterNetworking;
 import com.glisco.disenchanter.DisenchanterScreenHandler;
 import com.glisco.disenchanter.catalyst.Catalyst;
 import com.glisco.disenchanter.catalyst.CatalystRegistry;
-
 import net.minecraft.client.gl.RenderPipelines;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
