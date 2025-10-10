@@ -70,12 +70,34 @@ Catalysts modify how disenchanting works. Each catalyst has unique properties:
 
 ## ⚙️ Configuration
 
-The mod uses [owo-lib](https://github.com/wisp-forest/owo-lib) for configuration. Configuration options include:
+The mod uses [owo-lib](https://github.com/wisp-forest/owo-lib) for configuration and integrates with [Mod Menu](https://modrinth.com/mod/modmenu) for in-game configuration.
 
-- **Allow Disenchanting Without Catalyst**: Toggle whether disenchanting without a catalyst is allowed
-- **Blacklist**: Define items that cannot be disenchanted
+### Accessing the Config
 
-Access the config through **Mod Menu** (if installed) or edit the config file directly.
+1. Install **Mod Menu** (optional but recommended)
+2. Open the Mods menu in-game
+3. Find "Disenchanter" and click the config button
+4. Or edit `config/disenchanter.json5` manually
+
+### Configuration Options
+
+**General Settings:**
+- **Allow Disenchanting Without Catalyst**: Toggle whether disenchanting without a catalyst is allowed (default: `true`)
+
+**Catalyst Settings:**
+
+Each catalyst can be individually configured:
+- **Enabled**: Enable or disable the catalyst (default: `true`)
+- **Required Item Count**: Number of items required in the catalyst slot (defaults vary by catalyst)
+
+Available catalysts:
+- Emerald (1 required)
+- Diamond (1 required)
+- Ender Pearl (1 required)
+- Heart of the Sea (1 required)
+- Amethyst Shard (4 required)
+- **Nether Star** (1 required) - Ultimate catalyst!
+- Bottle o' Enchanting (1 required)
 
 ---
 
