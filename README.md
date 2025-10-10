@@ -139,18 +139,4 @@ Join the [Wisp Forest Discord](https://discord.gg/xrwHKktV2d) for:
 
 ---
 
-## 🙏 Credits
-
-Created by [glisco](https://github.com/glisco03)
-
-Part of the [Wisp Forest](https://github.com/wisp-forest) mod ecosystem.
-
----
-
-### 🌟 Like this mod?
-
-If you enjoy using Disenchanter, consider:
-- ⭐ Starring the repository
-- 📢 Sharing it with friends
-- 💬 Joining our Discord community
-- 🐛 Reporting bugs to help improve the mod
+Created by [glisco](https://github.com/glisco03). Part of the [Wisp Forest](https://github.com/wisp-forest) mod ecosystem.
