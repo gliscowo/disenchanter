@@ -1,9 +1,7 @@
 package com.glisco.disenchanter;
 
 import com.glisco.disenchanter.catalyst.Catalysts;
-import com.glisco.disenchanter.compat.config.DisenchanterConfig;
-import me.shedaniel.autoconfig.AutoConfig;
-import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
+import com.glisco.disenchanter.compat.config.DisenchanterConfigModel;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.block.AbstractBlock;
@@ -31,7 +29,7 @@ public class Disenchanter implements ModInitializer {
 
     public static final TagKey<Item> BLACKLIST = TagKey.of(RegistryKeys.ITEM, Identifier.of(MOD_ID, "blacklist"));
 
-    private static DisenchanterConfig CONFIG;
+    public static final DisenchanterConfigModel CONFIG = DisenchanterConfigModel.createAndLoad();
 
     static {
         DISENCHANTER_SCREEN_HANDLER = Registry.register(Registries.SCREEN_HANDLER, DISENCHANTER_HANDLER_ID, new ScreenHandlerType<>(DisenchanterScreenHandler::new, FeatureFlags.DEFAULT_ENABLED_FEATURES));
@@ -43,15 +41,12 @@ public class Disenchanter implements ModInitializer {
         Registry.register(Registries.ITEM, Identifier.of(MOD_ID, "disenchanter"), new BlockItem(DISENCHANTER_BLOCK, new Item.Settings().registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(MOD_ID, "disenchanter"))).useBlockPrefixedTranslationKey()));
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(entries -> entries.addAfter(Items.ENCHANTING_TABLE, DISENCHANTER_BLOCK));
 
-        AutoConfig.register(DisenchanterConfig.class, JanksonConfigSerializer::new);
-        CONFIG = AutoConfig.getConfigHolder(DisenchanterConfig.class).get();
-
         Catalysts.registerDefaults();
 
         DisenchanterNetworking.init();
     }
 
-    public static DisenchanterConfig getConfig() {
+    public static DisenchanterConfigModel getConfig() {
         return CONFIG;
     }
 }
