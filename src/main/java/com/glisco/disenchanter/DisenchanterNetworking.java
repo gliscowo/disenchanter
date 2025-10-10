@@ -33,9 +33,9 @@ public class DisenchanterNetworking {
         var client = access.runtime();
         var pos = message.pos;
 
-        client.world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ITEM_TOTEM_USE, SoundCategory.BLOCKS, .5f, .8f + client.world.random.nextFloat() * .4f, false);
+        client.world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ITEM_TOTEM_USE, SoundCategory.BLOCKS, .5f, .8f + client.world.random.nextFloat() * .4f);
         for (int i = 0; i < 100; i++) {
-            client.world.addParticle(ParticleTypes.LAVA, pos.getX() + 0.5, pos.getY() + 0.685, pos.getZ() + 0.5, 0, 0, 0);
+            client.world.addParticleClient(ParticleTypes.LAVA, pos.getX() + 0.5, pos.getY() + 0.685, pos.getZ() + 0.5, 0, 0, 0);
         }
     }
 

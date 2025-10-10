@@ -40,7 +40,7 @@ public class DisenchanterBlock extends Block {
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-        if (!world.isClient) player.openHandledScreen(new Factory(pos));
+        if (!world.isClient()) player.openHandledScreen(new Factory(pos));
         return ActionResult.SUCCESS;
     }
 
@@ -52,7 +52,7 @@ public class DisenchanterBlock extends Block {
             }
         } else {
             for (int i = 0; i < 2; i++) {
-                world.addParticle(ParticleTypes.SMOKE, pos.getX() + 0.5f + (random.nextFloat() - 0.5) * 0.25f, pos.getY() + 0.8f, pos.getZ() + 0.5f + (random.nextFloat() - 0.5) * 0.25f, (random.nextFloat() - 0.5) * 0.01f, (random.nextFloat() - 0.5) * 0.01f, (random.nextFloat() - 0.5) * 0.01f);
+                world.addParticleClient(ParticleTypes.SMOKE, pos.getX() + 0.5f + (random.nextFloat() - 0.5) * 0.25f, pos.getY() + 0.8f, pos.getZ() + 0.5f + (random.nextFloat() - 0.5) * 0.25f, (random.nextFloat() - 0.5) * 0.01f, (random.nextFloat() - 0.5) * 0.01f, (random.nextFloat() - 0.5) * 0.01f);
             }
         }
     }
@@ -65,7 +65,7 @@ public class DisenchanterBlock extends Block {
         double originY = particleVector.getY() + offsetY + (r.nextDouble() - 0.5) * deviation;
         double originZ = particleVector.getZ() + offsetZ + (r.nextDouble() - 0.5) * deviation;
 
-        world.addParticle(ParticleTypes.ENCHANT, destination.getX() + 0.5f, destination.getY(), destination.getZ() + 0.5f, originX, originY, originZ);
+        world.addParticleClient(ParticleTypes.ENCHANT, destination.getX() + 0.5f, destination.getY(), destination.getZ() + 0.5f, originX, originY, originZ);
     }
 
     private record Factory(BlockPos pos) implements NamedScreenHandlerFactory {
@@ -77,7 +77,7 @@ public class DisenchanterBlock extends Block {
 
         @Override
         public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
-            return new DisenchanterScreenHandler(syncId, inv, ScreenHandlerContext.create(player.getWorld(), pos));
+            return new DisenchanterScreenHandler(syncId, inv, ScreenHandlerContext.create(player.getEntityWorld(), pos));
         }
     }
 

@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public record VisitableTextContent(StringVisitable content) implements TextContent {
 
-    private static final Type<VisitableTextContent> DUMMY_TYPE = new Type<>(MapCodec.unit(new VisitableTextContent(StringVisitable.EMPTY)), "disenchanter:visitable_text");
+    private static final MapCodec<VisitableTextContent> CODEC = MapCodec.unit(new VisitableTextContent(StringVisitable.EMPTY));
 
     @Override
     public <T> Optional<T> visit(StringVisitable.StyledVisitor<T> visitor, Style style) {
@@ -22,7 +22,7 @@ public record VisitableTextContent(StringVisitable content) implements TextConte
     }
 
     @Override
-    public Type<?> getType() {
-        return DUMMY_TYPE;
+    public MapCodec<? extends TextContent> getCodec() {
+        return CODEC;
     }
 }
