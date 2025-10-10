@@ -77,7 +77,7 @@ public class DisenchanterScreenHandler extends ScreenHandler {
 
         final var world = contOpt.get();
 
-        DisenchantingLogic.performDisenchant(this.inventory, world.random, Disenchanter.getConfig().allowDisenchantingWithoutCatalyst);
+        DisenchantingLogic.performDisenchant(this.inventory, world.random, Disenchanter.getConfig().allowDisenchantingWithoutCatalyst());
 
         this.sendContentUpdates();
 
