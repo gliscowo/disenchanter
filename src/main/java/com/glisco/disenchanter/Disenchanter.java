@@ -1,5 +1,6 @@
 package com.glisco.disenchanter;
 
+import com.glisco.disenchanter.catalyst.CatalystRegistry;
 import com.glisco.disenchanter.catalyst.Catalysts;
 import com.glisco.disenchanter.compat.config.DisenchanterConfigModel;
 import net.fabricmc.api.ModInitializer;
@@ -42,8 +43,18 @@ public class Disenchanter implements ModInitializer {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(entries -> entries.addAfter(Items.ENCHANTING_TABLE, DISENCHANTER_BLOCK));
 
         Catalysts.registerDefaults();
+        
+        // Subscribe to any config option changes to reload catalysts
+        CONFIG.allOptions().values().forEach(option -> {
+            option.observe(value -> reloadCatalysts());
+        });
 
         DisenchanterNetworking.init();
+    }
+    
+    private static void reloadCatalysts() {
+        CatalystRegistry.reload();
+        Catalysts.registerDefaults();
     }
 
     public static DisenchanterConfigModel getConfig() {
